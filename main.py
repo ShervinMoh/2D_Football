@@ -12,6 +12,10 @@ pygame.display.set_caption("2D Football by ShervinMoh")
 clock = pygame.time.Clock()
 running = True
 
+# Load and set the volume for sound effects
+game_sound = pygame.mixer.Sound("musics\game.mp3")
+game_sound.set_volume(0)
+
 # Create Circle and Movement
 class Circle:
     def __init__(self, x, y, color):
@@ -249,10 +253,7 @@ class Keys:
 
 if __name__ == '__main__':
     
-    #Load the background music
-    mixer.music.load("musics\game.mp3")
-    mixer.music.set_volume(0.1)
-    pygame.mixer.music.play()
+    game_sound.play()
     
     # Circles
     circle1 = Circle(946, 399, (0, 128, 255))  # Blue Circle
