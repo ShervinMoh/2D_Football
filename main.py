@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+from pygame import mixer
 
 # Pygame setup
 pygame.init()
@@ -247,6 +248,12 @@ class Keys:
                 circle2.move(1, 0)
 
 if __name__ == '__main__':
+    
+    #Load the background music
+    mixer.music.load("musics\game.mp3")
+    mixer.music.set_volume(0.1)
+    pygame.mixer.music.play()
+    
     # Circles
     circle1 = Circle(946, 399, (0, 128, 255))  # Blue Circle
     circle2 = Circle(160, 399, (204, 153, 255))  # Purple Circle
