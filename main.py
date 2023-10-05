@@ -14,7 +14,7 @@ running = True
 
 # Load and set the volume for sound effects
 game_sound = pygame.mixer.Sound("musics\game.mp3")
-game_sound.set_volume(0)
+game_sound.set_volume(0.2)
 
 # Create Circle and Movement
 class Circle:
