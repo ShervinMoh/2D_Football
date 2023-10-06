@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 import random
-from pygame import mixer
 
 # Pygame setup
 pygame.init()
