@@ -16,10 +16,6 @@ running = True
 game_sound = pygame.mixer.Sound("musics\game.mp3")
 game_sound.set_volume(0.2)
 
-# Setup timer
-start_time = datetime.datetime.now()
-game_duration = 120  # 2 minutes in seconds
-
 # Create Circle and Movement
 class Circle:
     def __init__(self, x, y, color):
@@ -266,6 +262,7 @@ def game_loop():
     running = True
 
     start_time = datetime.datetime.now()
+    game_duration = 120  # 2 minutes in seconds
 
     while running:
         for event in pygame.event.get():
