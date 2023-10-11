@@ -256,16 +256,7 @@ class Keys:
                 circle2.move(1, 0)
 
 class Timer:
-    def __init__(self):
-        # Check the remaining time
-        current_time = datetime.datetime.now()
-        elapsed_time = (current_time - start_time).total_seconds()
-        remaining_time = game_duration - elapsed_time
-
-        if remaining_time <= 0:
-            # Game over condition
-            running = False
-
+    def draw_timer(remaining_time):
         font = pygame.font.SysFont("Arial", 30)
         text = font.render("Time: {:.1f}".format(remaining_time), True, (255, 255, 255))
         text_rect = text.get_rect(center=(dis_width // 2, 50))
@@ -293,7 +284,7 @@ def game_loop():
         Keys()
 
         # Timer
-        Timer()
+        Timer.draw_timer(remaining_time)
 
         # Draw the red and blue circles
         circle1.draw()
@@ -316,6 +307,11 @@ def game_loop():
 
         # Set the game's frame rate
         clock.tick(70)
+
+        # End the game when the countdown is finished
+        if remaining_time <= 0:
+            running = False
+
 
     # Quit Pygame
     pygame.quit()
