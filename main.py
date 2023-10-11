@@ -291,12 +291,6 @@ def game_loop():
         score.draw()
         score.update_scores(ball.score1, ball.score2)
 
-        # Update the display
-        pygame.display.update()
-
-        # Set the game's frame rate
-        clock.tick(70)
-
         # Check the remaining time
         current_time = datetime.datetime.now()
         elapsed_time = (current_time - start_time).total_seconds()
@@ -308,6 +302,12 @@ def game_loop():
         # End the game when the countdown is finished
         if remaining_time <= 0:
             running = False
+
+        # Set the game's frame rate
+        clock.tick(70)
+
+        # Update the display
+        pygame.display.update()
 
 
     # Quit Pygame
