@@ -178,7 +178,6 @@ class Score:
 
 class Field:
     def field(screen):
-         
         dark_blue_color = (32, 42, 68)
         orange_color = (255, 128, 0)
         yellow_color = (255, 255, 0)
@@ -255,11 +254,19 @@ class Keys:
                 circle2.move(1, 0)
 
 class Timer:
-    def draw_timer(remaining_time):
+    def __init__(self):
+        # Check the remaining time
+        current_time = datetime.datetime.now()
+        elapsed_time = (current_time - start_time).total_seconds()
+        remaining_time = game_duration - elapsed_time
+
         font = pygame.font.SysFont("Arial", 30)
         text = font.render("Time: {:.1f}".format(remaining_time), True, (255, 255, 255))
         text_rect = text.get_rect(center=(dis_width // 2, 50))
         screen.blit(text, text_rect)
+
+        if remaining_time <= 0:
+            pass
 
 def game_loop():
     running = True
@@ -291,17 +298,8 @@ def game_loop():
         score.draw()
         score.update_scores(ball.score1, ball.score2)
 
-        # Check the remaining time
-        current_time = datetime.datetime.now()
-        elapsed_time = (current_time - start_time).total_seconds()
-        remaining_time = game_duration - elapsed_time
-
         # Timer
-        Timer.draw_timer(remaining_time)
-
-        # End the game when the countdown is finished
-        if remaining_time <= 0:
-            running = False
+        Timer()
 
         # Set the game's frame rate
         clock.tick(70)
@@ -309,13 +307,12 @@ def game_loop():
         # Update the display
         pygame.display.update()
 
-
     # Quit Pygame
     pygame.quit()
 
 if __name__ == '__main__':
     
-# Background Sound
+    # Background Sound
     game_sound.play()
 
     # Set up the red and blue circles
