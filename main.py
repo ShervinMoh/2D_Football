@@ -266,7 +266,7 @@ class Timer:
         screen.blit(text, text_rect)
 
         if remaining_time <= 0:
-            pass
+            game.running = False
 
 class Game():
     def __init__(self):
