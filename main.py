@@ -268,47 +268,48 @@ class Timer:
         if remaining_time <= 0:
             pass
 
-def game_loop():
-    running = True
+class Game():
+    def __init__(self):
+        self.running = True
 
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
 
-        # Game field
-        Field.field(screen)
+            # Game field
+            Field.field(screen)
 
-        # Call Keys class
-        Keys()
+            # Call Keys class
+            Keys()
 
-        # Draw the red and blue circles
-        circle1.draw()
-        circle2.draw()
+            # Draw the red and blue circles
+            circle1.draw()
+            circle2.draw()
 
-        # Move and draw the white circle
-        ball.move()
-        ball.draw()
+            # Move and draw the white circle
+            ball.move()
+            ball.draw()
 
-        # Check for collisions between the white circle and the red and blue circles
-        ball.collide(circle1)
-        ball.collide(circle2)
+            # Check for collisions between the white circle and the red and blue circles
+            ball.collide(circle1)
+            ball.collide(circle2)
 
-        # Update score
-        score.draw()
-        score.update_scores(ball.score1, ball.score2)
+            # Update score
+            score.draw()
+            score.update_scores(ball.score1, ball.score2)
 
-        # Timer
-        Timer()
+            # Timer
+            Timer()
 
-        # Set the game's frame rate
-        clock.tick(70)
+            # Set the game's frame rate
+            clock.tick(70)
 
-        # Update the display
-        pygame.display.update()
+            # Update the display
+            pygame.display.update()
 
-    # Quit Pygame
-    pygame.quit()
+        # Quit Pygame
+        pygame.quit()
 
 if __name__ == '__main__':
     
@@ -325,4 +326,5 @@ if __name__ == '__main__':
     # Set up the score
     score = Score()
 
-    game_loop()
+    # Game class
+    game = Game()
