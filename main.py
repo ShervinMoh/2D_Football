@@ -269,19 +269,11 @@ def game_loop():
             if event.type == pygame.QUIT:
                 running = False
 
-        # Check the remaining time
-        current_time = datetime.datetime.now()
-        elapsed_time = (current_time - start_time).total_seconds()
-        remaining_time = game_duration - elapsed_time
-
         # Game field
         Field.field(screen)
 
         # Call Keys class
         Keys()
-
-        # Timer
-        Timer.draw_timer(remaining_time)
 
         # Draw the red and blue circles
         circle1.draw()
@@ -304,6 +296,14 @@ def game_loop():
 
         # Set the game's frame rate
         clock.tick(70)
+
+        # Check the remaining time
+        current_time = datetime.datetime.now()
+        elapsed_time = (current_time - start_time).total_seconds()
+        remaining_time = game_duration - elapsed_time
+
+        # Timer
+        Timer.draw_timer(remaining_time)
 
         # End the game when the countdown is finished
         if remaining_time <= 0:
