@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+import datetime
 
 # Pygame setup
 pygame.init()
@@ -14,6 +15,9 @@ running = True
 # Load and set the volume for sound effects
 game_sound = pygame.mixer.Sound("musics\game.mp3")
 game_sound.set_volume(0.2)
+
+start_time = datetime.datetime.now()
+game_duration = 120  # 2 minutes in seconds
 
 # Create Circle and Movement
 class Circle:
@@ -150,7 +154,7 @@ class Ball:
 class Score:
     def __init__(self):
         self.score1 = 0
-        self.score2 = 0
+        self.score2 = 0 
         self.purple_color = (204, 153, 255)
         self.blue_color = (0, 128, 255)
         self.white_color = (255, 255, 255)
@@ -250,6 +254,22 @@ class Keys:
             if keys[K_d] and not circle2.x > 547 - circle_radius:
                 circle2.move(1, 0)
 
+class Timer:
+    def __init__(self):
+        # Check the remaining time
+        current_time = datetime.datetime.now()
+        elapsed_time = (current_time - start_time).total_seconds()
+        remaining_time = game_duration - elapsed_time
+
+        if remaining_time <= 0:
+            # Game over condition
+            running = False
+
+        font = pygame.font.SysFont("Arial", 30)
+        text = font.render("Time: {:.1f}".format(remaining_time), True, (255, 255, 255))
+        text_rect = text.get_rect(center=(dis_width // 2, 50))
+        screen.blit(text, text_rect)
+
 if __name__ == '__main__':
     
     game_sound.play()
@@ -267,6 +287,9 @@ if __name__ == '__main__':
 
         # Game field
         Field.field(screen)
+
+        # Timer
+        Timer()
 
         # Defiend keys
         Keys()
