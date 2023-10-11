@@ -16,6 +16,7 @@ running = True
 game_sound = pygame.mixer.Sound("musics\game.mp3")
 game_sound.set_volume(0.2)
 
+# Setup timer
 start_time = datetime.datetime.now()
 game_duration = 120  # 2 minutes in seconds
 
