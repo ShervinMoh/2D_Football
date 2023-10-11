@@ -271,34 +271,34 @@ class Timer:
         text_rect = text.get_rect(center=(dis_width // 2, 50))
         screen.blit(text, text_rect)
 
-if __name__ == '__main__':
-    
-    game_sound.play()
-    
-    # Circles
-    circle1 = Circle(946, 399, (0, 128, 255))  # Blue Circle
-    circle2 = Circle(160, 399, (204, 153, 255))  # Purple Circle
+def game_loop():
+    running = True
 
-    # White Circle
-    ball = Ball(dis_width / 2, dis_height / 2)
-
-    score = Score()
+    start_time = datetime.datetime.now()
 
     while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        # Check the remaining time
+        current_time = datetime.datetime.now()
+        elapsed_time = (current_time - start_time).total_seconds()
+        remaining_time = game_duration - elapsed_time
 
         # Game field
         Field.field(screen)
 
+        # Call Keys class
+        Keys()
+
         # Timer
         Timer()
-
-        # Defiend keys
-        Keys()
 
         # Draw the red and blue circles
         circle1.draw()
         circle2.draw()
-        
+
         # Move and draw the white circle
         ball.move()
         ball.draw()
@@ -319,3 +319,20 @@ if __name__ == '__main__':
 
     # Quit Pygame
     pygame.quit()
+
+if __name__ == '__main__':
+    
+# Background Sound
+    game_sound.play()
+
+    # Set up the red and blue circles
+    circle1 = Circle(946, 399, (0, 128, 255))  # Blue Circle
+    circle2 = Circle(160, 399, (204, 153, 255))  # Purple Circle
+
+    # Set up the white circle
+    ball = Ball(dis_width / 2, dis_height / 2)
+
+    # Set up the score
+    score = Score()
+
+    game_loop()
