@@ -17,7 +17,7 @@ game_sound = pygame.mixer.Sound("musics\game.mp3")
 game_sound.set_volume(0.2)
 
 start_time = datetime.datetime.now()
-game_duration = 120  # 2 minutes in seconds
+game_duration = 120 # 2 minutes in seconds
 
 # Create Circle and Movement
 class Circle:
@@ -268,6 +268,13 @@ class Timer:
         if remaining_time <= 0:
             game.running = False
 
+    def panel(screen):
+        black_color = (0,0,0)
+        gray_color = (96,96,96)
+
+        pygame.draw.rect(screen, black_color, pygame.Rect(475, 5, 150, 50)) #Down
+        pygame.draw.rect(screen, gray_color, pygame.Rect(485, 15, 130, 30)) #Down
+
 class Game():
     def __init__(self):
         self.running = True
@@ -299,6 +306,9 @@ class Game():
             score.draw()
             score.update_scores(ball.score1, ball.score2)
 
+            # Show timer panel on screen
+            Timer.panel(screen)
+            
             # Timer
             Timer()
 
