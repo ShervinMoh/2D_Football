@@ -255,15 +255,25 @@ class Keys:
 
 class Timer:
     def __init__(self):
+        green_color = (0, 204, 0)
+        red_color = (204, 0, 0)
+
         # Check the remaining time
         current_time = datetime.datetime.now()
         elapsed_time = (current_time - start_time).total_seconds()
         remaining_time = game_duration - elapsed_time
 
-        font = pygame.font.SysFont("Arial", 30)
-        text = font.render("Time: {:.1f}".format(remaining_time), True, (255, 255, 255))
-        text_rect = text.get_rect(center=(dis_width // 2, 50))
-        screen.blit(text, text_rect)
+        if remaining_time > 10:
+            font = pygame.font.SysFont("Arial", 30)
+            text = font.render("Time: {:.1f}".format(remaining_time), True, green_color)
+            text_rect = text.get_rect(center=(dis_width // 2, 29))
+            screen.blit(text, text_rect)
+        
+        elif remaining_time <= 10:
+            font = pygame.font.SysFont("Arial", 30)
+            text = font.render("Time: {:.1f}".format(remaining_time), True, red_color)
+            text_rect = text.get_rect(center=(dis_width // 2, 29))
+            screen.blit(text, text_rect)
 
         if remaining_time <= 0:
             game.running = False
