@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import random
 import datetime
+import os
 
 # Pygame setup
 pygame.init()
@@ -12,9 +13,15 @@ pygame.display.set_caption("2D Football by ShervinMoh")
 clock = pygame.time.Clock()
 running = True
 
-# Load and set the volume for sound effects
-game_sound = pygame.mixer.Sound("musics\game.mp3")
-game_sound.set_volume(0.2)
+# Set the path to the music file
+music_path = r"E:\PythonCodes\project\2D_Football\musics\game.mp3"
+
+# Check if the file exists
+if os.path.exists(music_path):
+    game_sound = pygame.mixer.Sound(music_path)
+    game_sound.set_volume(0.2)
+else:
+    print("Music file not found!")
 
 start_time = datetime.datetime.now()
 game_duration = 120 # 2 minutes in seconds
