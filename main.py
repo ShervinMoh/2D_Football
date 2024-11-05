@@ -23,6 +23,7 @@ if os.path.exists(music_path):
 else:
     print("Music file not found!")
 
+# Game Duration
 start_time = datetime.datetime.now()
 game_duration = 120 # 2 minutes in seconds
 
