@@ -254,3 +254,6 @@ graph TD
 1. Add `Powerup` class for special abilities
 2. Implement `AI` class for single-player
 3. Expand `Field` with dynamic obstacles
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
